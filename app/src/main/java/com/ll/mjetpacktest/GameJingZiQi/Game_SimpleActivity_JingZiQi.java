@@ -46,6 +46,7 @@ public class Game_SimpleActivity_JingZiQi extends Activity {
         initData();
         resetView();
     }
+    
     public void onCellClicked(View view){
         Button button = (Button)view;
         log("click button tag=" + button.getTag());
@@ -80,6 +81,7 @@ public class Game_SimpleActivity_JingZiQi extends Activity {
     private Player mWinner;
     private GameState mGameState;
     private Cell[][] panel;
+    private int stepCount = 0;
     //-----------------
     //--view
     //-----------------
@@ -95,6 +97,7 @@ public class Game_SimpleActivity_JingZiQi extends Activity {
         mGameState = GameState.PLAYING;
         panel = null;
         panel = new Cell[3][3];
+        stepCount = 0;
     }
 
     private void resetView(){
@@ -177,6 +180,7 @@ public class Game_SimpleActivity_JingZiQi extends Activity {
         Cell cell = new Cell();
         cell.setPlayer(player);
         panel[row][col] = cell;
+        stepCount ++;
 
         Button btn = (Button) gridLayout.getChildAt(row * 3 + col);
         btn.setText(player.toString());
@@ -197,6 +201,13 @@ public class Game_SimpleActivity_JingZiQi extends Activity {
         winnerDesc.setVisibility(View.VISIBLE);
     }
 
+    private void setFinsihNoWinner(){
+        winnerLbl.setText("X 和 O");
+        winnerDesc.setText("平局");
+        winnerLbl.setVisibility(View.VISIBLE);
+        winnerDesc.setVisibility(View.VISIBLE);
+    }
+
     private void progress(Button button) {
         String tag = (String) button.getTag();
         int row = Integer.parseInt(tag.substring(0,1));
@@ -207,6 +218,12 @@ public class Game_SimpleActivity_JingZiQi extends Activity {
         if (!isStepValid(row,col)){
             markStep(row, col, mCurrentPlayer);
             if (!isGameFinished(row, col, mCurrentPlayer)){
+                if (stepCount == 9){
+                    //平局
+                    mGameState = GameState.FINISHED;
+                    setFinsihNoWinner();
+                    return;
+                }
                 switchPlayer();
             } else {
                 setWinner(mCurrentPlayer);
