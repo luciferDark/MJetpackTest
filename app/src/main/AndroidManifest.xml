@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".GameJingZiQi.Game_SimpleActivity_JingZiQi"/>
+        <activity android:name=".view.Game_JingZiQi_Activity"/>
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
