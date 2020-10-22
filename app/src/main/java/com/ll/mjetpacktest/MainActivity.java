@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.ll.mjetpacktest.GameJingZiQi.Game_SimpleActivity_JingZiQi;
+import com.ll.mjetpacktest.view.Game_JingZiQi_Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickedGameJingZiQi(View view){
-        Intent intent = new Intent(this, Game_SimpleActivity_JingZiQi.class);
+//        Intent intent = new Intent(this, Game_SimpleActivity_JingZiQi.class);
+        Intent intent = new Intent(this, Game_JingZiQi_Activity.class);
         startActivity(intent);
     }
 }
