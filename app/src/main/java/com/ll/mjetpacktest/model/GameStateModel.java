@@ -8,5 +8,6 @@ package com.ll.mjetpacktest.model;
  */
 public enum GameStateModel {
     PLAYING,
-    FINISHED
+    FINISHED,
+    FINISHED_NO_WINNER,
 }
